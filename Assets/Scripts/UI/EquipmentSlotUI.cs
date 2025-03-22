@@ -64,6 +64,11 @@ public class EquipmentSlotUI : MonoBehaviour, IItemHolder, IDragContainer<ItemSO
         _playerEquipment.RemoveItem(_equipLocation);
     }
 
+    public EquipLocation GetEquipLocation()
+    {
+        return _equipLocation;
+    }
+
     void RedrawUI()
     {
         _icon.SetItem(_playerEquipment.GetItemInSlot(_equipLocation));

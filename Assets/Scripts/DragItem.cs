@@ -87,6 +87,16 @@ public class DragItem<T> : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         var removedDestinationNumber = destination.GetNumber();
         var removedDestinationItem = destination.GetItem();
 
+        if(removedSourceItem is EquipableItemSO)
+        {
+            EquipLocation sourceEquipLocation = (removedSourceItem as EquipableItemSO).GetAllowedEquipLocation();
+            EquipLocation destinationEquipLocation = (destination as EquipmentSlotUI).GetEquipLocation();
+            if (sourceEquipLocation != destinationEquipLocation)
+            {
+                return;
+            }
+        }
+
         source.RemoveItems(removedSourceNumber);
         destination.RemoveItems(removedDestinationNumber);
 

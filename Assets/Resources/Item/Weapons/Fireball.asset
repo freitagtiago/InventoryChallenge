@@ -18,7 +18,7 @@ MonoBehaviour:
   _pickupPrefab: {fileID: 309177706762480859, guid: e394db703c5f8444d9d32fde4da513e5, type: 3}
   _icon: {fileID: 21300000, guid: ae496f5dad56ea645b72d374a0376368, type: 3}
   _isStackable: 0
-  _allowedEquipLocation: 7
+  _allowedEquipLocation: 5
   _animatorOverride: {fileID: 0}
   _equippedPrefab: {fileID: 0}
   _weaponRange: 25
