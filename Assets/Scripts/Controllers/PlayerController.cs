@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,9 +20,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CursorMapping[] _cursorMappings = null;
     [SerializeField] private float _maxNavMeshProjection = 1f;
 
+    private PlayerInput _playerInput;
+    private InputAction _clickAction;
+    private InputAction _pointAction;
+
     void Awake()
     {
         _health = GetComponent<Health>();
+        _playerInput = GetComponent<PlayerInput>();
+        _clickAction = _playerInput.actions["Click"];
+        _pointAction = _playerInput.actions["Point"];
     }
 
     void Update()
@@ -62,13 +70,14 @@ public class PlayerController : MonoBehaviour
 
     private bool InteractWithUI()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (_clickAction.triggered 
+            && _clickAction.ReadValue<float>() == 0)
         {
             _isDraggingUi = false;
         }
         if (EventSystem.current.IsPointerOverGameObject())
         {
-            if (Input.GetMouseButtonDown(0))
+            if (_clickAction.triggered && _clickAction.ReadValue<float>() > 0)
             {
                 _isDraggingUi = true;
             }
@@ -76,7 +85,8 @@ public class PlayerController : MonoBehaviour
             SetCursor(CursorType.UI);
             return true;
         }
-        if (_isDraggingUi == true)
+
+        if (_isDraggingUi)
         {
             return true;
         }

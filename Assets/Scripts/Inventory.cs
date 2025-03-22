@@ -5,6 +5,7 @@ public class Inventory : MonoBehaviour, ISaveable, IPredicateEvaluation
 {
     [SerializeField] private int _inventorySize = 16;
     private InventorySlot[] _slots;
+    private static GameObject _player;
 
     public struct InventorySlot
     {
@@ -16,8 +17,8 @@ public class Inventory : MonoBehaviour, ISaveable, IPredicateEvaluation
 
     public static Inventory GetPlayerInventory()
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        return player.GetComponent<Inventory>();
+        _player = GameObject.FindWithTag("Player");
+        return _player.GetComponent<Inventory>();
     }
 
     public bool HasSpaceFor(ItemSO item)
@@ -191,5 +192,11 @@ public class Inventory : MonoBehaviour, ISaveable, IPredicateEvaluation
                 return HasItem(ItemSO.GetFromID(parameters[0]));
         }
         return null;
+    }
+
+    public void HealPlayer(ConsumableItemSO item)
+    {
+        _player.GetComponent<Health>().Heal(item._hpToRecover);
+
     }
 }

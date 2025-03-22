@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,8 @@ public class UICanvasHandler : MonoBehaviour
 {
     [SerializeField] private GameObject _uiPanels;
     [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private GameObject _camera;
+    [SerializeField] private MovementHandler _movementHandler;
     private InputAction _inventoryAction;
 
     private void Awake()
@@ -28,6 +31,17 @@ public class UICanvasHandler : MonoBehaviour
         if (ctx.performed)
         {
             _uiPanels.SetActive(!_uiPanels.activeInHierarchy);
+
+            if (_uiPanels.activeInHierarchy)
+            {
+                _camera.SetActive(false);
+                _movementHandler.SetCanMove(false);
+            }
+            else
+            {
+                _camera.SetActive(true);
+                _movementHandler.SetCanMove(true);
+            }
         }
     }
 }

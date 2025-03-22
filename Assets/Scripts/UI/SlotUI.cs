@@ -8,12 +8,11 @@ public class SlotUI : MonoBehaviour, IItemHolder, IDragContainer<ItemSO>
     private ItemSO _item;
     private Inventory _inventory;
 
-    // PUBLIC
-
     public void Setup(Inventory inventory, int index)
     {
         this._inventory = inventory;
         this._index = index;
+        this._item = inventory.GetItemInSlot(index);
         _icon.SetItem(inventory.GetItemInSlot(index), inventory.GetQuantityInSlot(index));
     }
 
@@ -46,5 +45,13 @@ public class SlotUI : MonoBehaviour, IItemHolder, IDragContainer<ItemSO>
     {
         _inventory.RemoveFromSlot(_index, number);
         SavingWrapper.Instance.Save();
+    }
+    public void ConsumeItem()
+    {
+        if(_item is ConsumableItemSO)
+        {
+            _inventory.HealPlayer(_item as ConsumableItemSO);
+            RemoveItems(1);
+        }
     }
 }
