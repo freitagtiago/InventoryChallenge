@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private CursorMapping[] _cursorMappings = null;
     [SerializeField] private float _maxNavMeshProjection = 1f;
+    [SerializeField] private Transform _rightHand;
+    [SerializeField] private Transform _leftHand;
 
     private PlayerInput _playerInput;
     private InputAction _clickAction;

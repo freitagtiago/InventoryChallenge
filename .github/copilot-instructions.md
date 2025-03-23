@@ -2,7 +2,7 @@
 - Project name: InventoryChallenge
 - Unity version: Unity 6000.0.35f1
 - Active game object:
-  - Name: NPC
+  - Name: Slot(Clone)
   - Tag: Untagged
-  - Layer: Default
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

@@ -25,6 +25,7 @@ public class Equipment : MonoBehaviour, ISaveable
         {
             _equipmentUpdated();
         }
+        SavingWrapper.Instance.Save();
     }
 
     public void RemoveItem(EquipLocation slot)
@@ -34,6 +35,7 @@ public class Equipment : MonoBehaviour, ISaveable
         {
             _equipmentUpdated();
         }
+        SavingWrapper.Instance.Save();
     }
 
     public IEnumerable<EquipLocation> GetAllPopulatedSlots()
