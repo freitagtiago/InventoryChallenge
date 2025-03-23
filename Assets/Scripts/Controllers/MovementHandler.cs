@@ -31,6 +31,7 @@ public class MovementHandler : MonoBehaviour
         if (_canMove)
         {
             Move();
+            Debug.Log("IS MOVING " + _isMoving);
         }
     }
 
