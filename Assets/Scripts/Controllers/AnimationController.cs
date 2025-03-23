@@ -39,6 +39,5 @@ public class AnimationController : MonoBehaviour
             return;
         }
         _animator.SetBool(AnimState.isWalking.ToString(), false);
-        _animator.SetTrigger(_currentState.ToString());
     }
 }
