@@ -1,6 +1,7 @@
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UICanvasHandler : MonoBehaviour
 {
@@ -24,6 +25,26 @@ public class UICanvasHandler : MonoBehaviour
     private void OnDisable()
     {
         _inventoryAction.performed -= OnInventoryPanelPerformed;
+    }
+    public void OnInventoryButtonClick()
+    {
+        _uiPanels.SetActive(!_uiPanels.activeInHierarchy);
+
+        if (_uiPanels.activeInHierarchy)
+        {
+            _camera.SetActive(false);
+            _movementHandler.SetCanMove(false);
+        }
+        else
+        {
+            _camera.SetActive(true);
+            _movementHandler.SetCanMove(true);
+        }
+    }
+
+    public void OnExitButtonClick()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void OnInventoryPanelPerformed(InputAction.CallbackContext ctx)
