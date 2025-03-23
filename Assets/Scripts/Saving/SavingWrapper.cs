@@ -9,6 +9,8 @@ public class SavingWrapper : MonoBehaviour
 
     public static SavingWrapper Instance;
     private SavingSystem _savingSystem;
+
+    private Inventory _inventory;
     private void Awake()
     {
         if(Instance == null)
@@ -21,6 +23,17 @@ public class SavingWrapper : MonoBehaviour
         }
 
         _savingSystem = GetComponent<SavingSystem>();
+        _inventory = FindFirstObjectByType<Inventory>();
+    }
+
+    private void OnEnable()
+    {
+        _inventory._inventoryUpdated += SavingWrapper.Instance.Save;
+    }
+
+    private void OnDisable()
+    {
+        _inventory._inventoryUpdated -= SavingWrapper.Instance.Save;
     }
 
     private void Start()

@@ -28,7 +28,6 @@ public class SlotUI : MonoBehaviour, IItemHolder, IDragContainer<ItemSO>
     public void AddItems(ItemSO item, int number)
     {
         _inventory.AddItemToSlot(_index, item, number);
-        SavingWrapper.Instance.Save();
     }
 
     public ItemSO GetItem()
@@ -44,7 +43,6 @@ public class SlotUI : MonoBehaviour, IItemHolder, IDragContainer<ItemSO>
     public void RemoveItems(int number)
     {
         _inventory.RemoveFromSlot(_index, number);
-        SavingWrapper.Instance.Save();
     }
     public void ConsumeItem()
     {
