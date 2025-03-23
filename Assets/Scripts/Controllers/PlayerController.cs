@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private bool InteractWithComponent()
     {
-        RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+        RaycastHit[] hits = Physics.RaycastAll(GetMouseRay(),15f);
         foreach (RaycastHit hit in hits)
         {
             IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
